@@ -47,7 +47,7 @@ export const INITIAL_ADVISOR: Advisor = {
   id: 'AG-225-ABJ-042',
   name: 'Roland KOFFI',
   email: 'roland.koffi@orange.ci',
-  agency: MOCK_AGENCIES[1], // Cocody Angré
+  agency: MOCK_AGENCIES[1],
   role: 'Conseiller Clientèle & OM',
   counterNumber: 'Guichet 04',
   status: 'available',
@@ -78,6 +78,7 @@ export const INITIAL_CUSTOMERS: Customer[] = [
     telecom: {
       msisdn: '07 08 09 10 11',
       rawPhone: '0708091011',
+      simType: 'PHYSIQUE',
       simIccid: '89225 0100 4892 1042 1',
       imsi: '612010489210421',
       networkType: '4G+',
@@ -102,7 +103,7 @@ export const INITIAL_CUSTOMERS: Customer[] = [
           id: 'CDR-01',
           date: '26/08/2026 08:45',
           type: 'APPEL_SORTANT',
-          destinationOrOrigin: '05 04 12 34 56 (Orange)',
+          destinationOrOrigin: '07 04 12 34 56 (Orange)',
           durationOrVolume: '03m 42s',
           cost: 150,
           currency: 'FCFA'
@@ -205,7 +206,7 @@ export const INITIAL_CUSTOMERS: Customer[] = [
         id: 'OWN-03',
         ownerName: 'Kouadio Yves N\'GORAN',
         ownerIdDocument: 'Attestation A-991204',
-        ownerPhoneContact: '01 02 03 04 05',
+        ownerPhoneContact: '07 02 03 04 05',
         periodStart: '10/01/2016',
         periodEnd: '02/06/2019',
         reason: 'Recyclage et réattribution de numéro',
@@ -236,18 +237,7 @@ export const INITIAL_CUSTOMERS: Customer[] = [
         agencyName: 'Agence Cocody Angré'
       }
     ],
-    tickets: [
-      {
-        id: 'TCK-2026-8812',
-        subject: 'Demande d\'annulation de transfert erroné 25 000 FCFA',
-        category: 'Orange Money',
-        priority: 'HAUTE',
-        status: 'EN_COURS',
-        createdAt: '26/08/2026 08:32',
-        assignedTo: 'Support Réclamations OM',
-        description: 'Le client a saisi le mauvais numéro lors d\'un transfert USSD.'
-      }
-    ]
+    tickets: []
   },
   {
     id: 'CUST-CI-002',
@@ -269,8 +259,18 @@ export const INITIAL_CUSTOMERS: Customer[] = [
       issuedBy: 'Direction de la Surveillance du Territoire'
     },
     telecom: {
-      msisdn: '05 44 55 66 77',
-      rawPhone: '0544556677',
+      msisdn: '07 44 55 66 77',
+      rawPhone: '0744556677',
+      simType: 'ESIM',
+      esimDetails: {
+        eid: '89049032005008882600034821094821',
+        profileStatus: 'ACTIF',
+        smdpAddress: 'smdp.orange.ci',
+        activationCode: 'LPA:1$smdp.orange.ci$ORANGE-CI-EID-9842',
+        matchingId: 'ORANGE-CI-EID-9842',
+        qrCodeGeneratedDate: '18/07/2021',
+        deviceModel: 'iPhone 15 Pro Max'
+      },
       simIccid: '89225 0200 7712 9031 4',
       imsi: '612010771290314',
       networkType: '4G+',
@@ -293,7 +293,7 @@ export const INITIAL_CUSTOMERS: Customer[] = [
       cdrHistory: []
     },
     orangeMoney: {
-      accountNumber: '0544556677',
+      accountNumber: '0744556677',
       status: 'BLOQUE_CODE_ERRONE',
       failedPinAttemptsCount: 3,
       freezeReason: 'Code secret bloqué suite à 3 tentatives de mot de passe erronées consécutives',
@@ -315,7 +315,7 @@ export const INITIAL_CUSTOMERS: Customer[] = [
           fee: 1000,
           currency: 'FCFA',
           senderName: 'Aminata TOURÉ',
-          senderMsisdn: '0544556677',
+          senderMsisdn: '0744556677',
           recipientName: 'Point de Vente OM #8841',
           recipientMsisdn: '0700112233',
           status: 'GELEE',
@@ -328,7 +328,7 @@ export const INITIAL_CUSTOMERS: Customer[] = [
         id: 'OWN-T01',
         ownerName: 'Aminata TOURÉ',
         ownerIdDocument: 'Passeport 19CI884921',
-        ownerPhoneContact: '05 44 55 66 77',
+        ownerPhoneContact: '07 44 55 66 77',
         periodStart: '18/07/2021',
         periodEnd: 'ACTUEL',
         reason: 'Attribution initiale',
@@ -371,8 +371,9 @@ export const INITIAL_CUSTOMERS: Customer[] = [
       issuedBy: 'ONECI San Pedro'
     },
     telecom: {
-      msisdn: '01 23 45 67 89',
-      rawPhone: '0123456789',
+      msisdn: '07 23 45 67 89',
+      rawPhone: '0723456789',
+      simType: 'PHYSIQUE',
       simIccid: '89225 0300 1199 4482 0',
       imsi: '612010119944820',
       networkType: '4G',
@@ -395,7 +396,7 @@ export const INITIAL_CUSTOMERS: Customer[] = [
       cdrHistory: []
     },
     orangeMoney: {
-      accountNumber: '0123456789',
+      accountNumber: '0723456789',
       status: 'GELE_FRAUDE',
       freezeReason: 'Gel de sécurité conservatoire suite déclaration au service client',
       freezeDate: '25/08/2026 14:20',
@@ -413,7 +414,7 @@ export const INITIAL_CUSTOMERS: Customer[] = [
         id: 'OWN-CI03',
         ownerName: 'Kouassi BROU',
         ownerIdDocument: 'CNI C00781924510',
-        ownerPhoneContact: '01 23 45 67 89',
+        ownerPhoneContact: '07 23 45 67 89',
         periodStart: '01/04/2015',
         periodEnd: 'ACTUEL',
         reason: 'Attribution initiale',
@@ -447,6 +448,7 @@ export const INITIAL_CUSTOMERS: Customer[] = [
     telecom: {
       msisdn: '07 12 34 56 78',
       rawPhone: '0712345678',
+      simType: 'PHYSIQUE',
       simIccid: '89225 0400 9948 1022 5',
       imsi: '612010994810225',
       networkType: '4G+',

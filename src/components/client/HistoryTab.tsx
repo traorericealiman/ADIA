@@ -1,30 +1,20 @@
 import React from 'react';
 import { useCrm } from '../../context/CrmContext';
 
-export const SimOwnershipTab: React.FC = () => {
+export const HistoryTab: React.FC = () => {
   const { selectedCustomer } = useCrm();
 
   if (!selectedCustomer) return null;
 
-  const { ownershipHistory, telecom } = selectedCustomer;
+  const { ownershipHistory, telecom, actionAuditLogs } = selectedCustomer;
 
   return (
     <div className="w-full space-y-6">
       
-      {/* Top Banner */}
-      <div className="w-full bg-white border-2 border-black p-6">
-        <h3 className="text-base font-black text-black uppercase tracking-wide">
-          Historique de Titularité de la Puce SIM
-        </h3>
-        <p className="text-xs text-gray-600 mt-1">
-          À qui appartenait le numéro <strong className="font-mono text-black">{telecom.msisdn}</strong> (ICCID : {telecom.simIccid}) avant ? Traçabilité des détenteurs successifs.
-        </p>
-      </div>
-
-      {/* Timeline List */}
+      {/* 1. Historique de Titularité de la Puce */}
       <div className="w-full bg-white border-2 border-gray-200 p-6">
         <div className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-6 pb-2 border-b border-gray-200">
-          Chronologie des Propriétaires ({ownershipHistory.length} détenteurs répertoriés) :
+          Chronologie des Propriétaires de la Ligne ({ownershipHistory.length} détenteurs répertoriés) :
         </div>
 
         <div className="space-y-4">
@@ -88,6 +78,44 @@ export const SimOwnershipTab: React.FC = () => {
               </div>
             );
           })}
+        </div>
+      </div>
+
+      {/* 2. Historique des Actions & Événements sur la Puce */}
+      <div className="w-full bg-white border-2 border-gray-200 p-6">
+        <div className="flex items-center justify-between pb-3 border-b border-gray-200 mb-4">
+          <h3 className="text-sm font-black text-black uppercase tracking-wider">
+            Historique des Actions & Événements sur la Ligne
+          </h3>
+          <span className="text-xs text-gray-500 font-bold">
+            {actionAuditLogs.length} événements enregistrés
+          </span>
+        </div>
+
+        <div className="space-y-3">
+          {actionAuditLogs.length === 0 ? (
+            <div className="py-6 text-center text-xs text-gray-400">
+              Aucun événement particulier enregistré sur cette puce.
+            </div>
+          ) : (
+            actionAuditLogs.map(log => (
+              <div key={log.id} className="p-4 bg-gray-50 border border-gray-200 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-black text-sm">{log.action}</span>
+                    <span className="text-[10px] font-bold px-2 py-0.5 bg-gray-200 text-gray-800">
+                      {log.category}
+                    </span>
+                  </div>
+                  <div className="text-gray-600 mt-1">{log.details}</div>
+                </div>
+                <div className="text-right text-gray-500 font-mono text-[11px] flex-shrink-0">
+                  <div className="font-bold text-black">{log.timestamp}</div>
+                  <div className="text-gray-600 font-sans">{log.agentName} • {log.agencyName}</div>
+                </div>
+              </div>
+            ))
+          )}
         </div>
       </div>
 

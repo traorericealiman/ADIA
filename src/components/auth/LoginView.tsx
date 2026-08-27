@@ -9,7 +9,7 @@ export const LoginView: React.FC = () => {
   const [agentId, setAgentId] = useState('AG-225-ABJ-042');
   const [agentName, setAgentName] = useState('Roland KOFFI');
   const [password, setPassword] = useState('••••••••');
-  const [selectedAgencyId, setSelectedAgencyId] = useState(MOCK_AGENCIES[1].id); // Cocody Angré
+  const [selectedAgencyId, setSelectedAgencyId] = useState(MOCK_AGENCIES[1].id);
   const [counterNumber, setCounterNumber] = useState('Guichet 04');
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -58,9 +58,9 @@ export const LoginView: React.FC = () => {
           <button
             type="button"
             onClick={handleQuickLogin}
-            className="w-full py-3 px-4 bg-orange-50 hover:bg-[#ff7900] hover:text-black border border-[#ff7900] text-xs font-bold text-[#ff7900] transition-colors flex items-center justify-center gap-2 uppercase tracking-wide"
+            className="w-full py-3 px-4 bg-orange-50 hover:bg-[#ff7900] hover:text-black border border-[#ff7900] text-xs font-bold text-[#ff7900] transition-colors flex items-center justify-center gap-2 uppercase tracking-wide cursor-pointer"
           >
-            <span>Connexion Rapide Démo (Roland Koffi - Cocody)</span>
+            <span>Connexion Rapide Démo (Roland Koffi)</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
@@ -130,7 +130,7 @@ export const LoginView: React.FC = () => {
 
           <button
             type="submit"
-            className="w-full mt-4 bg-black hover:bg-[#ff7900] text-white hover:text-black font-extrabold text-xs uppercase tracking-wider py-3.5 px-4 flex items-center justify-center gap-2 transition-colors"
+            className="w-full mt-4 bg-black hover:bg-[#ff7900] text-white hover:text-black font-extrabold text-xs uppercase tracking-wider py-3.5 px-4 flex items-center justify-center gap-2 transition-colors cursor-pointer"
           >
             <span>Ouvrir la session</span>
             <ArrowRight className="w-4 h-4" />

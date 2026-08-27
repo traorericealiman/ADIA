@@ -632,6 +632,7 @@ export const CrmProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       telecom: {
         msisdn: customerData.phoneFormatted,
         rawPhone: customerData.rawPhone,
+        simType: 'PHYSIQUE',
         simIccid: customerData.simIccid,
         imsi: '612010' + Math.floor(100000000 + Math.random() * 900000000),
         networkType: '4G+',

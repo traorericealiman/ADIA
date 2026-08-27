@@ -52,9 +52,21 @@ export interface SIMOwnershipRecord {
 
 export type LineStatus = 'ACTIVE' | 'SUSPENDUE' | 'BLOQUEE_VOL';
 
+export interface ESimDetails {
+  eid: string;
+  profileStatus: 'ACTIF' | 'EN_ATTENTE_SCAN' | 'NON_INSTALLE';
+  smdpAddress: string;
+  activationCode: string;
+  matchingId: string;
+  qrCodeGeneratedDate: string;
+  deviceModel?: string;
+}
+
 export interface CustomerTelecom {
   msisdn: string;
   rawPhone: string;
+  simType: 'PHYSIQUE' | 'ESIM';
+  esimDetails?: ESimDetails;
   simIccid: string;
   imsi: string;
   networkType: '4G+' | '5G' | '4G';

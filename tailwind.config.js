@@ -37,8 +37,8 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['Orange Sans', 'Helvetica Neue', 'Arial', 'sans-serif'],
-        mono: ['Menlo', 'Monaco', 'Courier New', 'monospace'],
+        sans: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
+        mono: ['Menlo', 'Monaco', '"Courier New"', 'monospace'],
       },
       boxShadow: {
         'orange-glow': '0 0 15px rgba(255, 121, 0, 0.35)',

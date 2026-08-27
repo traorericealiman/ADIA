@@ -3,12 +3,8 @@ import { useCrm } from '../../context/CrmContext';
 import { MOCK_AGENCIES } from '../../data/mockData';
 import { 
   Building2, 
-  User, 
   LogOut, 
-  ChevronDown, 
-  Search, 
-  Phone,
-  ArrowLeft
+  ChevronDown
 } from 'lucide-react';
 
 interface AppLayoutProps {
@@ -20,35 +16,27 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
     advisor, 
     currentAgency, 
     logout, 
-    setAdvisorStatus, 
     switchAgency,
-    selectedCustomer,
     clearSelectedCustomer 
   } = useCrm();
 
   const [agencyDropdownOpen, setAgencyDropdownOpen] = useState(false);
 
-  const statusLabels = {
-    available: { label: 'Disponible', color: 'bg-emerald-500' },
-    in_consultation: { label: 'En Consultation', color: 'bg-[#ff7900]' },
-    paused: { label: 'En Pause', color: 'bg-amber-500' }
-  };
-
   return (
-    <div className="min-h-screen bg-[#F4F4F6] flex flex-col font-sans antialiased text-gray-900 selection:bg-[#ff7900] selection:text-white">
+    <div className="w-full min-h-screen bg-[#F4F4F6] flex flex-col font-sans antialiased text-gray-900 selection:bg-[#ff7900] selection:text-white">
       
-      {/* Official Clean Top Navigation Bar */}
-      <header className="bg-black text-white sticky top-0 z-40 border-b-2 border-[#ff7900] shadow-sm">
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Top Navigation Bar */}
+      <header className="bg-black text-white w-full sticky top-0 z-40 border-b-2 border-[#ff7900] shadow-sm">
+        <div className="w-full px-4 sm:px-8 lg:px-12">
           <div className="flex items-center justify-between h-16">
             
-            {/* Left: Orange Brand Block & Title */}
-            <div className="flex items-center gap-4">
+            {/* Left: Brand */}
+            <div className="flex items-center gap-6">
               <button
                 onClick={clearSelectedCustomer}
                 className="flex items-center gap-3 text-left focus:outline-none hover:opacity-90 transition-opacity"
               >
-                <div className="w-8 h-8 bg-[#ff7900] rounded-none flex items-center justify-center font-black text-black text-sm select-none">
+                <div className="w-8 h-8 bg-[#ff7900] flex items-center justify-center font-black text-black text-sm select-none">
                   O
                 </div>
                 <div>
@@ -60,20 +48,9 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
                   </h1>
                 </div>
               </button>
-
-              {/* Return to Phone Number Search Button */}
-              {selectedCustomer && (
-                <button
-                  onClick={clearSelectedCustomer}
-                  className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-gray-300 hover:text-white bg-[#222] hover:bg-[#333] px-3 py-1.5 border border-gray-700 transition-colors ml-4"
-                >
-                  <ArrowLeft className="w-3.5 h-3.5 text-[#ff7900]" />
-                  <span>Saisir un autre numéro</span>
-                </button>
-              )}
             </div>
 
-            {/* Right: Advisor Info, Agency Switcher, Status */}
+            {/* Right: Advisor Info & Agency */}
             {advisor ? (
               <div className="flex items-center gap-4">
                 
@@ -84,14 +61,14 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
                     className="flex items-center gap-2 bg-[#1c1c1c] hover:bg-[#282828] px-3 py-1.5 border border-gray-700 text-xs font-medium transition-colors text-gray-200"
                   >
                     <Building2 className="w-3.5 h-3.5 text-[#ff7900]" />
-                    <span className="max-w-[160px] truncate hidden md:inline">{currentAgency.name}</span>
+                    <span className="max-w-[180px] truncate hidden md:inline">{currentAgency.name}</span>
                     <ChevronDown className="w-3 h-3 text-gray-400" />
                   </button>
 
                   {agencyDropdownOpen && (
                     <div className="absolute right-0 mt-2 w-72 bg-[#1c1c1c] border border-gray-700 shadow-2xl py-1 z-50 text-xs">
                       <div className="px-3 py-1.5 text-[10px] font-bold text-gray-400 uppercase border-b border-gray-800">
-                        Sélectionner l'Agence (Côte d'Ivoire)
+                        Sélectionner l'Agence
                       </div>
                       {MOCK_AGENCIES.map(a => (
                         <button
@@ -105,21 +82,15 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
                           }`}
                         >
                           <div>{a.name}</div>
-                          <div className="text-[10px] text-gray-500">{a.city} • {a.address}</div>
+                          <div className="text-[10px] text-gray-500">{a.city}</div>
                         </button>
                       ))}
                     </div>
                   )}
                 </div>
 
-                {/* Status Indicator */}
-                <div className="hidden sm:flex items-center gap-2 text-xs bg-[#1c1c1c] px-3 py-1.5 border border-gray-700">
-                  <span className={`w-2 h-2 rounded-full ${statusLabels[advisor.status].color} animate-pulse`} />
-                  <span className="text-gray-300">{statusLabels[advisor.status].label}</span>
-                </div>
-
                 {/* Advisor Details */}
-                <div className="flex items-center gap-2.5 pl-3 border-l border-gray-800">
+                <div className="flex items-center gap-3 pl-3 border-l border-gray-800">
                   <div className="text-right hidden sm:block">
                     <div className="text-xs font-bold text-white">{advisor.name}</div>
                     <div className="text-[10px] text-gray-400 font-mono">{advisor.counterNumber} • {advisor.id}</div>
@@ -141,14 +112,14 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
         </div>
       </header>
 
-      {/* Main Wide Content Area */}
-      <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      {/* Main Full-Screen Content Area */}
+      <main className="flex-1 w-full px-4 sm:px-8 lg:px-12 py-6">
         {children}
       </main>
 
-      {/* Clean Minimalist Footer */}
-      <footer className="border-t border-gray-200 bg-white py-3 text-center text-xs text-gray-500">
-        Orange Côte d'Ivoire • Portail Espace Client & Gestion Orange Money
+      {/* Footer */}
+      <footer className="border-t border-gray-200 bg-white py-3 px-4 sm:px-8 text-center text-xs text-gray-500">
+        Orange Côte d'Ivoire • Portail Visualisation Client Télécom & Orange Money
       </footer>
 
     </div>
